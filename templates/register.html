@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2023/04/13/16814004247549.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .password-hints {
+            font-size: 0.9em;
+            color: #666;
+            text-align: left;
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+
+        .password-hints ul {
+            padding-left: 15px;
+            list-style: disc;
+        }
+
+        button {
+            padding: 15px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registrarse</h2>
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="id_username">Nombre de usuario:</label>
+                {{ form.username }}
+                <p class="error-message">{{ form.username.errors }}</p>
+                <small>Requerido. Máximo 150 caracteres. Solo letras, dígitos y @/./+/-/_.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="id_email">Correo electrónico:</label>
+                {{ form.email }}
+                <p class="error-message">{{ form.email.errors }}</p>
+            </div>
+
+            <div class="form-group">
+                <label for="id_password1">Contraseña:</label>
+                {{ form.password1 }}
+                <p class="error-message">{{ form.password1.errors }}</p>
+            </div>
+
+            <div class="password-hints">
+                <ul>
+                    <li>Tu contraseña no puede ser similar a tu información personal.</li>
+                    <li>Debe contener al menos 8 caracteres.</li>
+                    <li>No puede ser una contraseña de uso común.</li>
+                    <li>No puede ser completamente numérica.</li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label for="id_password2">Confirmar contraseña:</label>
+                {{ form.password2 }}
+                <p class="error-message">{{ form.password2.errors }}</p>
+                <small>Introduce la misma contraseña que antes, para verificar.</small>
+            </div>
+
+            <button type="submit">Registrarse</button>
+        </form>
+        <p>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia sesión aquí</a></p>
+    </div>
+</body>
+</html>

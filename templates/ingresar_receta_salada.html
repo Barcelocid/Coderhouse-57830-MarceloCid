@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar Receta Salada</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://wallpapers.com/images/hd/food-4k-m37wpodzrcbv5gvw.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        label {
+            width: 40%; /* Ancho de las etiquetas */
+            text-align: left;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="number"], input[type="date"], textarea {
+            width: 60%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* El campo de descripción estará separado y ocupará todo el ancho */
+        .descripcion-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .descripcion-group textarea {
+            width: 100%;
+            height: 100px;
+            resize: none;
+        }
+
+        /* Estilos de los botones */
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 48%; /* Para que ocupen el 48% del ancho cada uno */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .form-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
+            input[type="text"], input[type="number"], input[type="date"], textarea {
+                width: 100%;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Ingresar Receta Salada</h2>
+        <form method="POST">
+            {% csrf_token %}
+            
+            <!-- Nombre persona -->
+            <div class="form-group">
+                <label for="nombre_persona">Nombre persona:</label>
+                <input type="text" id="nombre_persona" name="nombre_persona" required>
+            </div>
+            
+            <!-- Edad -->
+            <div class="form-group">
+                <label for="edad">Edad:</label>
+                <input type="number" id="edad" name="edad" required>
+            </div>
+
+            <!-- Nombre receta -->
+            <div class="form-group">
+                <label for="nombre_receta">Nombre receta:</label>
+                <input type="text" id="nombre_receta" name="nombre_receta" required>
+            </div>
+
+            <!-- Fecha subida -->
+            <div class="form-group">
+                <label for="fecha_subida">Fecha subida:</label>
+                <input type="date" id="fecha_subida" name="fecha_subida" required>
+            </div>
+
+            <!-- Descripción (aquí se encuentra abajo de todos los otros campos) -->
+            <div class="descripcion-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" required></textarea>
+            </div>
+
+            <!-- Botones alineados: Guardar y Volver al Menú -->
+            <div class="buttons">
+                <button type="submit">Guardar Receta</button>
+                <button type="button" onclick="window.location.href='{% url 'menu_principal' %}'">Volver al Menú</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

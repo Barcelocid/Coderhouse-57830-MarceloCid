@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2023/04/13/16814004247549.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 800px; /* Tamaño máximo de la caja */
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 1.8em;
+        }
+
+        .result-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .result-item p {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+
+        /* Botones adicionales */
+        .extra-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .extra-buttons a {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .extra-buttons a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos para pantallas pequeñas */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            button, input[type="text"] {
+                font-size: 14px;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .result-item p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Menú Principal</h1>
+
+        <!-- Formulario de búsqueda -->
+        <form method="GET" action="{% url 'buscar_receta' %}">
+            <input type="text" name="q" placeholder="Buscar por nombre de receta" required>
+            <button type="submit">Buscar</button>
+        </form>
+
+        <h2>Resultados de la búsqueda:</h2>
+
+        <!-- Mostrar los resultados de la búsqueda -->
+        {% if resultados %}
+            {% for resultado in resultados %}
+                <div class="result-item">
+                    <p><strong>Nombre de la receta:</strong> {{ resultado.nombre_receta }}</p>
+                    <p><strong>Fecha de subida:</strong> {{ resultado.fecha_subida }}</p>
+                    <p><strong>Nombre de la persona:</strong> {{ resultado.nombre_persona }}</p>
+                    <p><strong>Edad:</strong> {{ resultado.edad }} años</p>
+                    <p><strong>Descripción:</strong> {{ resultado.descripcion }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No se encontraron resultados.</p>
+        {% endif %}
+
+        <!-- Botones adicionales -->
+        <div class="extra-buttons">
+            <a href="{% url 'ingresar_receta_dulce' %}">Ingresar Receta Dulce</a>
+            <a href="{% url 'ingresar_receta_salada' %}">Ingresar Receta Salada</a>
+            <a href="{% url 'ingresar_receta_bebida' %}">Ingresar Bebida</a>
+            <a href="{% url 'about' %}">Nosotros</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
