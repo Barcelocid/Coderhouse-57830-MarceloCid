@@ -32,17 +32,18 @@ class RecetaDulceForm(forms.ModelForm):
         model = RecetaDulce  # Asegúrate de que este sea el nombre correcto de tu modelo
         fields = ['nombre_persona', 'nombre_receta', 'descripcion', 'fecha_subida', 'edad']  # Campos que quieres incluir
 
-
+# Formulario para ingresar una receta salada
 class RecetaSaladaForm(forms.ModelForm):
     class Meta:
         model = RecetaSalada  # Asegúrate de que este sea el nombre correcto de tu modelo
         fields = ['nombre_persona', 'nombre_receta', 'descripcion', 'fecha_subida', 'edad']  # Campos que quieres incluir
 
+# Formulario para ingresar una receta bebida
 class RecetaBebidaForm(forms.ModelForm):
     class Meta:
         model = RecetaBebida  # Asegúrate de que este sea el nombre correcto de tu modelo
         fields = ['nombre_persona', 'nombre_receta', 'descripcion', 'fecha_subida', 'edad']  # Campos que quieres incluir
 
-
+# Formulario para buscar receta
 class BuscarRecetaForm(forms.Form):
     query = forms.CharField(label='Buscar receta', max_length=100)

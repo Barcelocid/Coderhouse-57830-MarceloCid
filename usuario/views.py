@@ -7,12 +7,6 @@ from django.core.exceptions import ValidationError
 from django.db.models import Q
 
 
-
-# views.py
-from django.shortcuts import render, redirect
-from .forms import RecetaSaladaForm, RecetaBebidaForm
-
-
 # Vista de registro
 def register_view(request):
     if request.method == 'POST':
@@ -93,7 +87,7 @@ def ingresar_receta_dulce(request):
     return render(request, 'ingresar_receta_dulce.html', {'form': form})
 
 
-
+# Vista para ingresar receta salada
 def ingresar_receta_salada(request):
     if request.method == 'POST':
         form = RecetaSaladaForm(request.POST)
@@ -105,6 +99,7 @@ def ingresar_receta_salada(request):
 
     return render(request, 'ingresar_receta_salada.html', {'form': form})
 
+# Vista para ingresar receta bebida
 def ingresar_receta_bebida(request):
     if request.method == 'POST':
         form = RecetaBebidaForm(request.POST)
@@ -116,7 +111,7 @@ def ingresar_receta_bebida(request):
 
     return render(request, 'ingresar_receta_bebida.html', {'form': form})
 
-
+# Vista para ingresar about
 def about(request):
     return render(request, 'about.html')
 

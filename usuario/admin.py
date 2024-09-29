@@ -7,13 +7,13 @@ from .models import PerfilUsuario, RecetaDulce, RecetaBebida, RecetaSalada  # Im
 
 # Registrar el perfil de usuario en el admin
 class PerfilUsuarioInline(admin.StackedInline):
-    model = PerfilUsuario  # El modelo de perfil que contiene información extra
+    model = PerfilUsuario 
     can_delete = False
     verbose_name_plural = 'Perfiles de Usuarios'
 
 # Extendemos la clase del admin de usuarios de Django para incluir el perfil de usuario
 class UsuarioAdmin(UserAdmin):
-    inlines = (PerfilUsuarioInline,)  # Agregamos el perfil como una sección dentro del usuario
+    inlines = (PerfilUsuarioInline,)  
 
 # Volvemos a registrar el modelo de usuario con la clase UsuarioAdmin
 admin.site.unregister(User)
